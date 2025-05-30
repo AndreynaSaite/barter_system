@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация</title>
+</head>
+<body>
+    <h2>Регистрация</h2>
+    <form id="register-form">
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="text" name="first_name" placeholder="Имя" required><br>
+        <input type="text" name="last_name" placeholder="Фамилия" required><br>
+        <input type="password" name="password" placeholder="Пароль" required><br>
+        <input type="password" name="confirm_password" placeholder="Подтвердите пароль" required><br>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const payload = {
+                email: form.email.value,
+                first_name: form.first_name.value,
+                last_name: form.last_name.value,
+                password: form.password.value,
+                confirm_password: form.confirm_password.value,
+            };
+
+            const response = await fetch('/api/register/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+            console.log(data);
+            if (response.ok) {
+                localStorage.setItem('access', data.access);
+                localStorage.setItem('refresh', data.refresh);
+                window.location.href = '/';
+            } else {
+                alert('Ошибка регистрации: ' + JSON.stringify(data));
+            }
+        });
+    </script>
+</body>
+</html>

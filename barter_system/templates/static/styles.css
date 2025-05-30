@@ -1,0 +1,266 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+}
+
+#user-info {
+    margin-bottom: 20px;
+}
+
+#user-info button,
+#toggle-buttons button {
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: white;
+    transition: background-color 0.2s ease;
+}
+
+#user-info button:hover,
+#toggle-buttons button:hover {
+    background-color: #2980b9;
+}
+
+/* Контейнер с объявлениями — фиксированный размер карточек */
+#ads-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Карточка объявления */
+.ad-card {
+    background: white;
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 220px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-family: Arial, sans-serif;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ad-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.ad-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.ad-card h3 {
+    margin: 10px 0 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.ad-card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.edit-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #2ecc71;
+    color: white;
+    padding: 3px 6px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+/* Модальное окно объявления */
+#ad-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+#ad-modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 400px;
+    border-radius: 6px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.modal-buttons button {
+    padding: 8px 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+#save-btn {
+    background-color: #2ecc71;
+    color: white;
+}
+
+#delete-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+#close-modal {
+    background-color: #bdc3c7;
+    color: white;
+}
+
+/* Модальные окна обмена */
+#exchange-modal,
+#exchange-offers-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#exchange-modal.show,
+#exchange-offers-modal.show {
+    display: flex;
+}
+
+/* Карточка предложения обмена */
+.exchange-offer-card {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.exchange-offer-card h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.exchange-offer-card img {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.exchange-offer-card div > p {
+    margin: 6px 0;
+}
+
+.exchange-btn-group {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.exchange-btn-group .accept-btn,
+.exchange-btn-group .reject-btn {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 14px;
+}
+
+.exchange-btn-group .accept-btn {
+    background-color: #2ecc71;
+}
+
+.exchange-btn-group .accept-btn:hover {
+    background-color: #27ae60;
+}
+
+.exchange-btn-group .reject-btn {
+    background-color: #e74c3c;
+}
+
+.exchange-btn-group .reject-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Списки предложений */
+#sent-offers-list,
+#received-offers-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+
+/* Основные стили страницы */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+h1 {
+    color: #2c3e50;
+}
+
+/* --- Стили для фильтров --- */
+#filters {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+#filters label {
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+}
+
+#filters select {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+#filters select:hover {
+    border-color: #3498db;
+}

@@ -1,0 +1,40 @@
+
+services:
+  db:
+    container_name: db
+    image: postgres:17.2
+    ports:
+      - "5432:5432"
+    networks:
+      - db-network
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  web:
+    build: ./barter_system
+    container_name: web
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+      - db-network
+    environment:
+      - DEBUG=True
+    depends_on:
+      - db
+    volumes:
+      - ./static:/app/static
+
+
+volumes:
+  db-data:
+
+networks:
+  db-network:
+  app-network:
+

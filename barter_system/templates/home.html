@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Бартерные объявления</title>
+    <link rel="stylesheet" href="./static/styles.css">
+</head>
+<body>
+    <h1>Бартерные объявления</h1>
+    <div id="user-info"></div>
+
+    <div id="filters">
+        <div>
+            <label for="filter-condition">Состояние:</label>
+            <select id="filter-condition">
+                <option value="">Все</option>
+                <option value="new">Новый</option>
+                <option value="used">Б/У</option>
+            </select>
+        </div>
+        <div>
+            <label for="filter-category">Категория:</label>
+            <select id="filter-category">
+                <option value="">Все</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="toggle-buttons" style="margin-bottom: 20px; display:none;">
+        <button id="show-my-ads">Мои объявления</button>
+        <button id="show-all-ads">Все объявления</button>
+        <button id="show-my-exchanges">Мои предложения</button>
+    </div>
+    <div id="ads-list" class="scrollable-ads"></div>
+
+    <div id="ad-modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Добавить объявление</h2>
+            <form id="ad-form">
+                <input type="text" name="title" placeholder="Заголовок" required><br><br>
+                <textarea name="description" placeholder="Описание" required></textarea><br><br>
+                <input type="url" name="image_url" placeholder="URL изображения (необязательно)"><br><br>
+                <input type="text" name="category" placeholder="Категория" required><br><br>
+                <select name="condition" required>
+                    <option value="">Состояние</option>
+                    <option value="new">Новый</option>
+                    <option value="used">Б/У</option>
+                </select><br><br>
+                <div class="modal-buttons">
+                    <button type="submit" id="save-btn">Опубликовать</button>
+                    <button type="button" id="delete-btn" style="display:none;">Удалить</button>
+                    <button type="button" id="close-modal">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="exchange-modal" class="modal">
+        <div class="modal-content">
+            <h2>Предложить обмен</h2>
+            <p id="exchange-ad-title"></p>
+            <form id="exchange-form">
+                <label for="my-ad-select">Выберите одно из ваших объявлений:</label><br>
+                <select id="my-ad-select" required></select><br><br>
+                <textarea name="comment" placeholder="Комментарий к предложению" required></textarea><br><br>
+                <div class="modal-buttons">
+                    <button type="submit">Отправить</button>
+                    <button type="button" id="close-exchange-modal">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="exchange-offers-modal" class="modal">
+    <div class="modal-content">
+        <h2>Мои предложения обмена</h2>
+        <div class="tabs">
+            <button id="tab-sent" class="active-tab">Отправленные</button>
+            <button id="tab-received">Полученные</button>
+            <button id="tab-closed">Закрытые сделки</button>
+        </div>
+        <div id="sent-offers-list" class="offers-list"></div>
+        <div id="received-offers-list" class="offers-list" style="display:none;"></div>
+        <div id="closed-offers-list" class="offers-list" style="display:none;"></div>
+        <button type="button" id="close-exchange-offers-modal">Закрыть</button>
+        </div>
+    </div>
+
+
+    <script src="./static/ads.js"></script>
+</body>
+</html>
